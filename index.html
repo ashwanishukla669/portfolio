@@ -20,11 +20,14 @@
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
@@ -37,7 +40,7 @@
 
     <i class="header-toggle d-xl-none bi bi-list"></i>
 
-    <nav id="navmenu" class="navmenu">
+    <nav id="navmenu" class="navmenu ">
       <ul>
         <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i><span>Home</span></a></li>
         <li><a href="#about"><i class="bi bi-person navicon"></i><span>About</span></a></li>
@@ -52,23 +55,34 @@
   <main class="main">
 
     <!-- Hero Section -->
-    <section id="hero" class="hero section light-background">
+    <section id="hero" class="hero section">
 
       <img src="assets/img/hero-bg.jpg" alt="">
 
       <div class="container" data-aos="zoom-out">
         <div class="row justify-content-center">
+          <div class="absolute"></div>
           <div class="col-lg-9">
-            <h2>Ashwani Shukla</h2>
-            <p>I'm <span class="typed"
+            <p>Hi, I'm Ashwani Shukla</p>
+            <h2><span class="typed"
                 data-typed-items="UI/UX Designer, WordPress Developer, Shopify Developer, React/Next.js Developer">Designer</span><span
-                class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
-            <div class="social-links">
+                class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></h2>
+
+            <div class="desc">I create the visual parts of websites that users see and interact with, using HTML,
+              CSS, and JavaScript. My job is to make websites look good and work well on all devices.</div>
+           
+
+              <div class="hire_btn">
+                <a href="#resume" class="hire-me_btn">Hire Me</a>
+                <a href="#portfolio" class="portfolio_btn">My Portfolio</a>
+              </div>
+
+            <!-- <div class="social-links">
               <a href="#"><i class="bi bi-twitter-x"></i></a>
               <a href="#"><i class="bi bi-facebook"></i></a>
               <a href="#"><i class="bi bi-instagram"></i></a>
               <a href="#"><i class="bi bi-linkedin"></i></a>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -103,7 +117,7 @@
                   <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong>
                     <span>https://mywork-murex.vercel.app</span>
                   </li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+91 813076787</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+91-813076787</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>New Delhi</span></li>
                 </ul>
               </div>
@@ -112,7 +126,7 @@
                   <!-- <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>30</span></li> -->
                   <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Bachelor of Arts (BA)</span>
                   </li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>email@example.com</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>ashwanishukla669@gmail.com</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
                 </ul>
               </div>
@@ -260,123 +274,128 @@
 
     <!-- Resume Section -->
     <!-- Resume Section -->
-   <!-- Resume Section -->
-<section id="resume" class="resume section">
+    <!-- Resume Section -->
+    <section id="resume" class="resume section">
 
-  <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Resume</h2>
-    <p>Creative and results-driven Front-End Developer with extensive experience in building user-focused websites using modern web technologies. Skilled in WordPress, Shopify, React, Next.js, and UI/UX design, with a strong focus on responsive design, performance, and clean code.</p>
-  </div>
-
-  <div class="container">
-    <div class="row">
-
-      <!-- Left Column -->
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-        <h3 class="resume-title">Summary</h3>
-        <div class="resume-item pb-0">
-          <h4>Ashwani Shukla</h4>
-          <p><em>UI/UX Designer & Front-End Developer with a strong background in creating responsive, high-performing websites. Proficient in WordPress, React, Next.js, Tailwind CSS, and Shopify development.</em></p>
-          <ul>
-            <li>New Delhi, India</li>
-            <li>+91 8130 767817</li>
-            <li>ashwanishukla669@gmail.com</li>
-          </ul>
-        </div>
-
-        <h3 class="resume-title">Education</h3>
-        <div class="resume-item">
-          <h4>Bachelor of Arts (BA)</h4>
-          <h5>2014 - 2019</h5>
-          <p><em>Delhi University, India</em></p>
-          <p>Focused on web development, database systems, and UI design. Built multiple academic projects using HTML, CSS, JavaScript, and WordPress.</p>
-        </div>
-
-        <div class="resume-item">
-          <h4>Diploma in UI/UX Design</h4>
-          <h5>2021</h5>
-          <p><em>Coursera / Udemy</em></p>
-          <p>Studied wireframing, prototyping, and usability testing using tools like Figma and Adobe XD.</p>
-        </div>
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Resume</h2>
+        <p>Creative and results-driven Front-End Developer with extensive experience in building user-focused websites
+          using modern web technologies. Skilled in WordPress, Shopify, React, Next.js, and UI/UX design, with a strong
+          focus on responsive design, performance, and clean code.</p>
       </div>
 
-      <!-- Right Column -->
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-        <h3 class="resume-title">Professional Experience</h3>
+      <div class="container">
+        <div class="row">
 
-        <div class="resume-item">
-          <h4>UI/UX Designer & Frontend Developer</h4>
-          <h5>2022 - Present</h5>
-          <p><em>Omlogic, New Delhi</em></p>
-          <ul>
-            <li>Working on complex web projects involving WordPress, React, and Shopify.</li>
-            <li>Leading UI/UX design improvements across multiple client platforms.</li>
-            <li>Collaborating with marketing and backend teams to optimize performance.</li>
-          </ul>
-        </div>       
+          <!-- Left Column -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="resume-title">Summary</h3>
+            <div class="resume-item pb-0">
+              <h4>Ashwani Shukla</h4>
+              <p><em>UI/UX Designer & Front-End Developer with a strong background in creating responsive,
+                  high-performing websites. Proficient in WordPress, React, Next.js, Tailwind CSS, and Shopify
+                  development.</em></p>
+              <ul>
+                <li>New Delhi, India</li>
+                <li>+91 8130 767817</li>
+                <li>ashwanishukla669@gmail.com</li>
+              </ul>
+            </div>
 
-        <div class="resume-item">
-          <h4>WordPress Developer</h4>
-          <h5>3 Months</h5>
-          <p><em>Webtics Solution</em></p>
-          <ul>
-            <li>Contributed to small-scale UI tasks and bug fixes.</li>
-          </ul>
+            <h3 class="resume-title">Education</h3>
+            <div class="resume-item">
+              <h4>Bachelor of Arts (BA)</h4>
+              <h5>2014 - 2019</h5>
+              <p><em>Delhi University, India</em></p>
+              <p>Focused on web development, database systems, and UI design. Built multiple academic projects using
+                HTML, CSS, JavaScript, and WordPress.</p>
+            </div>
+
+            <div class="resume-item">
+              <h4>Diploma in UI/UX Design</h4>
+              <h5>2021</h5>
+              <p><em>Coursera / Udemy</em></p>
+              <p>Studied wireframing, prototyping, and usability testing using tools like Figma and Adobe XD.</p>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="resume-title">Professional Experience</h3>
+
+            <div class="resume-item">
+              <h4>UI/UX Designer & Frontend Developer</h4>
+              <h5>2022 - Present</h5>
+              <p><em>Omlogic, New Delhi</em></p>
+              <ul>
+                <li>Working on complex web projects involving WordPress, React, and Shopify.</li>
+                <li>Leading UI/UX design improvements across multiple client platforms.</li>
+                <li>Collaborating with marketing and backend teams to optimize performance.</li>
+              </ul>
+            </div>
+
+            <div class="resume-item">
+              <h4>WordPress Developer</h4>
+              <h5>3 Months</h5>
+              <p><em>Webtics Solution</em></p>
+              <ul>
+                <li>Contributed to small-scale UI tasks and bug fixes.</li>
+              </ul>
+            </div>
+
+            <div class="resume-item">
+              <h4>Web Designer</h4>
+              <h5>1 Month</h5>
+              <p><em>Red Dash Media</em></p>
+              <ul>
+                <li>Worked on landing page designs and basic frontend tasks.</li>
+              </ul>
+            </div>
+
+            <div class="resume-item">
+              <h4>Frontend Developer</h4>
+              <h5>2019 - 2021</h5>
+              <p><em>Beta Software Technology</em></p>
+              <ul>
+                <li>Designed responsive websites and implemented custom WordPress themes.</li>
+                <li>Focused on speed optimization and responsive layouts.</li>
+              </ul>
+            </div>
+
+            <div class="resume-item">
+              <h4>Web Designer</h4>
+              <h5>2015 - 2018</h5>
+              <p><em>Web Designing Lab</em></p>
+              <ul>
+                <li>Created engaging UI designs for clients in various industries.</li>
+                <li>Handled full-cycle development from design to deployment.</li>
+              </ul>
+            </div>
+
+            <div class="resume-item">
+              <h4>Frontend Developer</h4>
+              <h5>2023 (6 Months)</h5>
+              <p><em>Futuristic Software Pvt Ltd</em></p>
+              <ul>
+                <li>Built scalable web interfaces using Next.js and Tailwind CSS.</li>
+                <li>Integrated third-party APIs and improved UI performance.</li>
+              </ul>
+            </div>
+
+            <div class="resume-item">
+              <h4>Frontend Developer</h4>
+              <h5>1.5 Years</h5>
+              <p><em>Fennel Infotech</em></p>
+              <ul>
+                <li>Worked on HTML/CSS/JS-based websites and WordPress customization.</li>
+              </ul>
+            </div>
+
+          </div>
         </div>
-
-        <div class="resume-item">
-          <h4>Web Designer</h4>
-          <h5>1 Month</h5>
-          <p><em>Red Dash Media</em></p>
-          <ul>
-            <li>Worked on landing page designs and basic frontend tasks.</li>
-          </ul>
-        </div>
-
-        <div class="resume-item">
-          <h4>Frontend Developer</h4>
-          <h5>2019 - 2021</h5>
-          <p><em>Beta Software Technology</em></p>
-          <ul>
-            <li>Designed responsive websites and implemented custom WordPress themes.</li>
-            <li>Focused on speed optimization and responsive layouts.</li>
-          </ul>
-        </div>
-
-        <div class="resume-item">
-          <h4>Web Designer</h4>
-          <h5>2015 - 2018</h5>
-          <p><em>Web Designing Lab</em></p>
-          <ul>
-            <li>Created engaging UI designs for clients in various industries.</li>
-            <li>Handled full-cycle development from design to deployment.</li>
-          </ul>
-        </div>
-
-        <div class="resume-item">
-          <h4>Frontend Developer</h4>
-          <h5>2023 (6 Months)</h5>
-          <p><em>Futuristic Software Pvt Ltd</em></p>
-          <ul>
-            <li>Built scalable web interfaces using Next.js and Tailwind CSS.</li>
-            <li>Integrated third-party APIs and improved UI performance.</li>
-          </ul>
-        </div>
-
-        <div class="resume-item">
-          <h4>Frontend Developer</h4>
-          <h5>1.5 Years</h5>
-          <p><em>Fennel Infotech</em></p>
-          <ul>
-            <li>Worked on HTML/CSS/JS-based websites and WordPress customization.</li>
-          </ul>
-        </div>
-
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- /Resume Section -->
 
@@ -386,7 +405,9 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Portfolio</h2>
-        <p>A showcase of my work across modern front-end technologies — from responsive websites and dynamic React apps to custom WordPress themes and Shopify stores. Each project highlights clean code, UI/UX precision, and a focus on performance.</p>
+        <p>A showcase of my work across modern front-end technologies — from responsive websites and dynamic React apps
+          to custom WordPress themes and Shopify stores. Each project highlights clean code, UI/UX precision, and a
+          focus on performance.</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -398,36 +419,51 @@
             <li data-filter=".filter-app">React/Next Js</li>
             <li data-filter=".filter-wordpress">WordPress</li>
             <li data-filter=".filter-shopify">Shopify</li>
-            <li data-filter=".filter-html">HTML</li>            
+            <li data-filter=".filter-html">HTML</li>
           </ul><!-- End Portfolio Filters -->
 
           <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 
+            <!-- React/Nextjs -->
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="assets/img/portfolio/wxm.jpg" class="img-fluid" alt="WXM">
+              <img src="assets/img/masonry-portfolio/wxm.jpg" class="img-fluid" alt="WXM">
               <div class="portfolio-info">
                 <h4>WXM</h4>
                 <p>The lights hit. The arena glowed. The first beat of “Jigra Hai”</p>
-                <a href="assets/img/portfolio/wxm.jpg" title="WXM"
-                  data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="https://wxm.world/" target="_blank" title="More Details" class="details-link"><i
+                <a href="assets/img/masonry-portfolio/wxm.jpg" title="WXM" data-gallery="portfolio-gallery-app"
+                  class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="https://wxm.world/" target="_blank" title="WXM" class="details-link"><i
                     class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-wordpress">
-              <img src="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <img src="assets/img/masonry-portfolio/tech-ashwani.jpg" class="img-fluid" alt="WXM">
               <div class="portfolio-info">
-                <h4>Product 1</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" title="Product 1"
+                <h4>TechAshwani</h4>
+                <p>The lights hit. The arena glowed. The first beat of “Jigra Hai”</p>
+                <a href="assets/img/masonry-portfolio/tech-ashwani.jpg" title="Ashwani" data-gallery="portfolio-gallery-app"
+                  class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="https://first-project-black-nu.vercel.app/" target="_blank" title="Ashwani" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div>
+
+            <!-- WordPress -->
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-wordpress">
+              <img src="assets/img/masonry-portfolio/weco.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Weco Toilet</h4>
+                <p>By combining French design expertise with the environmental and technological know-how of
+                  international research centers,</p>
+                <a href="assets/img/masonry-portfolio/weco.jpg" title="Weco Toilet"
                   data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
                     class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                <a href="https://www.weco-toilet.com/" title="Weco Toilet" class="details-link"><i
                     class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>
 
+            <!-- Shopify -->
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-shopify">
               <img src="assets/img/masonry-portfolio/kbirwellness.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
@@ -439,8 +475,22 @@
                 <a href="https://kbirwellness.com/" target="_blank" title="Kbir Wellness" class="details-link"><i
                     class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
+            </div>
 
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-shopify">
+              <img src="assets/img/masonry-portfolio/brewscap.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Brewscape Coffee</h4>
+                <p>Complete Diabetes Management Kit</p>
+                <a href="assets/img/masonry-portfolio/brewscap.jpg" title="Brewscape Coffee"
+                  data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                    class="bi bi-zoom-in"></i></a>
+                <a href="https://brewscapecoffee.com/" target="_blank" title="Brewscape Coffee" class="details-link"><i
+                    class="bi bi-link-45deg"></i></a>
+              </div>
+            </div>
+
+            <!-- HTMl -->
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-html">
               <img src="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
@@ -448,8 +498,7 @@
                 <p>Lorem ipsum, dolor sit</p>
                 <a href="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" title="App 2"
                   data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="#" title="More Details" class="details-link"><i
-                    class="bi bi-link-45deg"></i></a>
+                <a href="#" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div><!-- End Portfolio Item -->
 
@@ -711,8 +760,8 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Contact</h2>
-        <p>Feel free to reach out for freelance work, collaborations, or just to say hi. 
-I’m always excited to connect with like-minded professionals and businesses.</p>
+        <p>Feel free to reach out for freelance work, collaborations, or just to say hi.
+          I’m always excited to connect with like-minded professionals and businesses.</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade" data-aos-delay="100">
@@ -732,7 +781,7 @@ I’m always excited to connect with like-minded professionals and businesses.</
               <i class="bi bi-telephone flex-shrink-0"></i>
               <div>
                 <h3>Call Us</h3>
-                <p>+91 8130 767817</p>
+                <p><a href="tel:+91-8130767817">+91-8130 767817</a></p>
               </div>
             </div><!-- End Info Item -->
 
@@ -740,7 +789,7 @@ I’m always excited to connect with like-minded professionals and businesses.</
               <i class="bi bi-envelope flex-shrink-0"></i>
               <div>
                 <h3>Email Us</h3>
-                <p>ashwanishukla669@gmail.com</p>
+                <p><a href="mailto:ashwanishukla669@gmail.com">ashwanishukla669@gmail.com</a></p>
               </div>
             </div><!-- End Info Item -->
 
