@@ -24,7 +24,7 @@ export default function Hero() {
         {/* Buttons */}
         <div className='flex gap-4'>
           <Button icon={<FaArrowAltCircleRight size={18} />} onClick={() => router.push('/portfolio')} variant="primary">View Portfolio</Button>
-          <Button icon={<FaFileLines size={18} />} onClick={()=> window.open('/pdf/Ashwani_Shukla_ATS_Resume.pdf', '_blank')} variant="secondary">View Resume</Button>
+          <Button icon={<FaFileLines size={18} />} onClick={()=> window.open('/pdf/cv.pdf', '_blank')} variant="secondary">View Resume</Button>
         </div>
       </div>
 
