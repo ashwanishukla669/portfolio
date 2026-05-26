@@ -1,7 +1,6 @@
 "use client";
 
-import Image from 'next/image'
-import React from 'react'
+import Image from 'next/image' 
 import { SocialIcons } from './ui/SocialIcons'
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaLocationArrow } from "react-icons/fa";
 import { usePathname } from 'next/navigation';
@@ -11,13 +10,17 @@ import Link from 'next/link';
 import { Button } from './ui/Button';
 import { useRouter } from 'next/navigation';
 
-export const Sidebar: FC = () => {
+type Props = {
+  closeDrawer?: () => void;
+};
+
+export const Sidebar: FC<Props> = ({ closeDrawer }) => {
 
   const pathName: string = usePathname();
   const router = useRouter();
 
   return (
-    <aside className='w-[280px] bg-[#020617] p-6 flex flex-col gap-6 h-screen sticky top-0 overflow-y-auto custom-scrollbar'>
+    <aside className='lg:w-[280px] bg-[#020617] p-6 flex flex-col gap-6 h-screen sticky top-0 overflow-y-auto custom-scrollbar'>
       <div className='text-center flex flex-col gap-5'>
 
         {/* Name */}
@@ -59,6 +62,7 @@ export const Sidebar: FC = () => {
                 key={item.label}
                 href={item.href}
                 target={item.target}
+                onClick={closeDrawer}
                 className={`flex items-center gap-3 px-3 py-0 transition-all 
                       ${isActive ? "text-emerald-400 font-medium" : "text-gray-300 hover:text-emerald-400"}
                     `}

@@ -65,7 +65,7 @@ export default function PortfolioCards() {
                             <h3 className='text-xl text-gray-200 line-clamp-1'>
                                 {project.title}
                             </h3>
-                            <p className='text-base text-gray-400 line-clamp-5'>
+                            <p className='text-base text-gray-400 line-clamp-3 md:line-clamp-5'>
                                 {project.description}
                             </p>
                         </div>
