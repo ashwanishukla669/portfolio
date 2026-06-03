@@ -1,9 +1,14 @@
-import React from 'react' 
+"use client";
+
 import { Button } from '../components/ui/Button';
 import { FaLocationArrow } from 'react-icons/fa';
 import PortfolioCards from '../components/Portfolio/PortfolioCards';
+import { useRouter } from 'next/navigation';
  
 export default function PortfolioPage() { 
+
+    const router = useRouter();
+
     return (
         <section className='py-14'>
             <div className='text-center md:w-[80%] mx-auto mb-10 flex flex-col gap-4'>
@@ -12,9 +17,10 @@ export default function PortfolioPage() {
 
                 {/* Buttons */}
                 <div className='flex justify-center gap-4'>
-                    <Button icon={<FaLocationArrow size={18} />}>
+                    <Button onClick={()=> router.push("/contact")} icon={<FaLocationArrow size={18} />}>
                         <div className='text-center'>Hire Me</div>
                     </Button>
+                     
                 </div>
             </div>
 

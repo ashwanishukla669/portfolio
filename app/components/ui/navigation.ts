@@ -33,7 +33,7 @@ export const NAV_ITEMS: NavItem[] = [
     { 
         icon: FaFileAlt, 
         label: "Resume", 
-        href: "/pdf/cv.pdf",
+        href: "/pdf/resume.pdf",
         target: "_blank" 
     },
     { 
