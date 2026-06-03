@@ -22,7 +22,7 @@ export const Button: FC<ButtonProps> = ({
     }
 
   return (
-   <button className={`${baseStyles} ${variants[variant]} ${className}`} {...props}>
+   <button className={`${baseStyles} ${variants[variant]} ${className} hover:scale-105 transition-all duration-500`} {...props}>
       <div className='flex gap-2 items-center justify-center'>
         {icon && <span>{icon}</span>}
         {children}
