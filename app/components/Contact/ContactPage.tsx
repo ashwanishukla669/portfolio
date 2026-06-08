@@ -15,7 +15,7 @@ const ContactPage = () => {
 
         {/* Form */}
         <div className='text-center'>
-          <h4 className='text-4xl font-bold mb-3 text-white'>Get In Touch</h4>
+          <h4 className='text-2xl font-bold mb-3 text-white'>Get In Touch</h4>
         </div>
 
     </>
