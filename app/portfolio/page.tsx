@@ -36,7 +36,7 @@ export default function PortfolioPage() {
         {/* Description */}
         <p className="max-w-[800px] text-[15px] leading-7 text-gray-200 sm:text-[16px] sm:leading-8">
           Explore a selection of websites and eCommerce
-          experiences I've worked on using WordPress,
+          experiences I&apos;ve worked on using WordPress,
           Shopify, and modern frontend technologies.
           My work includes custom website development,
           responsive interfaces, Shopify theme customization,
@@ -46,6 +46,7 @@ export default function PortfolioPage() {
         {/* Actions */}
         <div className="mt-7 flex flex-wrap items-center gap-5">
 
+          {/* Hire Me */}
           <Button
             onClick={() => router.push("/contact")}
             icon={<FaLocationArrow size={17} />}
@@ -54,14 +55,16 @@ export default function PortfolioPage() {
             Hire Me
           </Button>
 
-          <button
-            type="button"
-            onClick={() => router.push("/resume")}
+          {/* View Resume PDF */}
+          <a
+            href="/pdf/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm font-semibold text-gray-200 transition-colors hover:text-emerald-400"
           >
             View My Resume
             <FiArrowUpRight size={17} />
-          </button>
+          </a>
 
         </div>
       </div>
