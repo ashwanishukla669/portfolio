@@ -1,53 +1,68 @@
-import { SiAdobephotoshop, SiBootstrap, SiCss3, SiExpress, SiHtml5, SiJavascript, SiMongodb, SiNodedotjs, SiReact, SiShopify, SiTailwindcss, SiWoocommerce, SiWordpress } from "react-icons/si";
 
+import {
+  SiAdobephotoshop,
+  SiBootstrap,
+  SiCss3,
+  SiExpress,
+  SiHtml5,
+  SiJavascript,
+  SiMongodb,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiReact,
+  SiShopify,
+  SiTailwindcss,
+  SiWoocommerce,
+  SiWordpress,
+} from "react-icons/si";
 
-export const skills = [  
-  {
-    title: "React & Next.js",
-    description:
-      "Modern frontend development with reusable components and optimized performance.",
-    icon: [SiReact, SiNodedotjs],
-  },  
-  {
-    title: "Node, Express & MongoDB",
-    description:
-      "Scalable backend APIs and databases for full-stack applications.",
-    icon: [SiNodedotjs, SiExpress, SiMongodb],
-  }, 
+export const skills = [
   {
     title: "WordPress & WooCommerce",
     description:
-      "Custom themes, plugins and scalable eCommerce solutions.",
+      "Custom WordPress development, theme customization, WooCommerce stores, and responsive websites.",
     icon: [SiWordpress, SiWoocommerce],
   },
   {
-    title: "Shopify",
+    title: "Shopify Development",
     description:
-      "High-converting Shopify stores with custom themes and apps.",
+      "Custom Shopify themes, Liquid development, storefront customization, and eCommerce experiences.",
     icon: [SiShopify],
+  },
+  {
+    title: "React & Next.js",
+    description:
+      "Hands-on experience building websites with React.js and Next.js using reusable UI components.",
+    icon: [SiReact, SiNextdotjs],
   },
   {
     title: "HTML & CSS",
     description:
-      "Semantic markup and responsive layouts with modern CSS.",
+      "Semantic HTML, modern CSS, responsive layouts, and cross-browser compatible interfaces.",
     icon: [SiHtml5, SiCss3],
   },
-   {
-    title: "Vanilla JavaScript",
+  {
+    title: "JavaScript",
     description:
-      "Core JavaScript for building fast, interactive and reliable web experiences.",
+      "Interactive website functionality, DOM manipulation, and modern JavaScript development.",
     icon: [SiJavascript],
   },
   {
     title: "Bootstrap & Tailwind",
     description:
-      "Rapid UI development with clean, consistent design systems.",
+      "Responsive UI development using Bootstrap, Tailwind CSS, and reusable design patterns.",
     icon: [SiBootstrap, SiTailwindcss],
   },
   {
-    title: "Photoshop",
+    title: "Node.js & Backend",
     description:
-      "UI design, image editing and web-ready graphics.",
+      "Foundational knowledge of Node.js, Express.js, MongoDB, and backend API development.",
+    icon: [SiNodedotjs, SiExpress, SiMongodb],
+  },
+  {
+    title: "Adobe Photoshop",
+    description:
+      "Image editing, website graphics, visual assets, and preparing optimized images for web.",
     icon: [SiAdobephotoshop],
   },
 ];
