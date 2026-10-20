@@ -95,4 +95,26 @@ export const projects = [
     date: "2025-01-20",
     technologies: ["Shopify"],
   },
+  {
+    id: 9,
+    title: "Koala Kingdom",
+    description:
+      "Developed a responsive Shopify e-commerce website for an Australian souvenir and gifting brand, featuring custom product collections, engaging layouts, and a seamless shopping experience across all devices.",
+    image: "/portfolio/koalakingdom.jpg",
+    category: "shopify",
+    link: "https://www.koalakingdom.com.au/",
+    date: "2026-10-20",
+    technologies: ["Shopify", "Liquid", "HTML5", "CSS3", "JavaScript", "E-commerce"],
+  },
+    {
+    id: 10,
+    title: "Heal and Grow Wellness",
+    description:
+      "Developed a responsive WordPress website for a wellness and life coaching brand, featuring an elegant design, structured program pages, and clear calls to action for session bookings and client engagement.",
+    image: "/portfolio/healandgrowwellness.jpg",
+    category: "wordPress",
+    link: "https://healandgrowwellness.in/",
+    date: "2026-10-20",
+    technologies: ["WordPress", "Elementor", "HTML5", "CSS3", "Responsive", "Design"],
+  },
 ];
