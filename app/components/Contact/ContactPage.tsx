@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   FiLinkedin,
   FiMapPin,
@@ -11,25 +11,238 @@ import {
   FiAlertCircle,
 } from "react-icons/fi";
 
-type FormData = {
+type ContactFormData = {
   name: string;
   email: string;
+  phone: string;
   subject: string;
   message: string;
 };
 
 type FormStatus = "idle" | "success" | "error";
 
-const initialForm: FormData = {
+type FormErrors = Partial<
+  Record<keyof ContactFormData, string>
+>;
+
+type FieldName = keyof ContactFormData;
+
+const initialForm: ContactFormData = {
   name: "",
   email: "",
+  phone: "",
   subject: "",
   message: "",
 };
 
+const requiredFields: FieldName[] = [
+  "name",
+  "email",
+  "phone",
+  "subject",
+];
+
+// Common email providers for typo detection.
+// Other legitimate domains are also accepted.
+const commonEmailProviders = [
+  "gmail.com",
+  "yahoo.com",
+  "yahoo.co.in",
+  "outlook.com",
+  "hotmail.com",
+  "hotmail.co.uk",
+  "live.com",
+  "icloud.com",
+  "aol.com",
+  "proton.me",
+  "protonmail.com",
+];
+
+// Levenshtein distance for common domain typos
+function editDistance(a: string, b: string): number {
+  const previous = Array.from(
+    { length: b.length + 1 },
+    (_, i) => i
+  );
+
+  for (let i = 1; i <= a.length; i++) {
+    const current = [i];
+
+    for (let j = 1; j <= b.length; j++) {
+      current[j] = Math.min(
+        current[j - 1] + 1,
+        previous[j] + 1,
+        previous[j - 1] +
+          (a[i - 1] === b[j - 1] ? 0 : 1)
+      );
+    }
+
+    previous.splice(
+      0,
+      previous.length,
+      ...current
+    );
+  }
+
+  return previous[b.length];
+}
+
+function validateField(
+  field: FieldName,
+  value: string
+): string {
+  const trimmed = value.trim();
+
+  switch (field) {
+    case "name": {
+      if (!trimmed) {
+        return "Please enter your name.";
+      }
+
+      if (trimmed.length < 2) {
+        return "Name must be at least 2 characters.";
+      }
+
+      if (
+        !/^[\p{L}\p{M}\s.'-]+$/u.test(trimmed) ||
+        !/\p{L}/u.test(trimmed)
+      ) {
+        return "Name must contain valid letters.";
+      }
+
+      if (
+        trimmed.replace(/[^\p{L}]/gu, "").length < 2
+      ) {
+        return "Please enter at least 2 letters.";
+      }
+
+      return "";
+    }
+
+    case "email": {
+      if (!trimmed) {
+        return "Please enter your email address.";
+      }
+
+      if (trimmed.length > 254) {
+        return "Email address is too long.";
+      }
+
+      // Practical email format validation
+      const emailRegex =
+        /^[A-Za-z0-9_%+-]+(?:\.[A-Za-z0-9_%+-]+)*@[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)+$/;
+
+      if (!emailRegex.test(trimmed)) {
+        return "Please enter a valid email address.";
+      }
+
+      const domain = trimmed
+        .split("@")[1]
+        .toLowerCase();
+
+      const domainParts = domain.split(".");
+      const tld = domainParts.at(-1) || "";
+
+      if (
+        tld.length < 2 ||
+        tld.length > 24 ||
+        !/^[a-z]+$/.test(tld)
+      ) {
+        return "Please enter a valid email domain extension.";
+      }
+
+      // Detect likely typos of common email providers
+      for (const provider of commonEmailProviders) {
+        if (domain === provider) {
+          return "";
+        }
+
+        // Check only domains resembling known providers.
+        const distance = editDistance(
+          domain,
+          provider
+        );
+
+        if (distance === 1) {
+          return `Please check your email domain. Did you mean ${provider}?`;
+        }
+
+        // Catch unusually long incorrect TLDs
+        // for well-known provider names.
+        const providerBase = provider.split(".")[0];
+        const enteredBase = domainParts[0];
+
+        if (
+          enteredBase === providerBase &&
+          domainParts.length === 2 &&
+          tld.length > 5
+        ) {
+          return "Please check your email domain extension.";
+        }
+      }
+
+      return "";
+    }
+
+    case "phone": {
+      if (!trimmed) {
+        return "Please enter your phone number.";
+      }
+
+      if (!/^\d{10}$/.test(trimmed)) {
+        return "Please enter a valid 10-digit mobile number.";
+      }
+
+      if (!/^[6-9]/.test(trimmed)) {
+        return "Mobile number must start with 6, 7, 8 or 9.";
+      }
+
+      if (/^(\d)\1{9}$/.test(trimmed)) {
+        return "Please enter a valid mobile number.";
+      }
+
+      return "";
+    }
+
+    case "subject": {
+      if (!trimmed) {
+        return "Please enter a subject.";
+      }
+
+      if (trimmed.length < 3) {
+        return "Subject must be at least 3 characters.";
+      }
+
+      if (!/\p{L}/u.test(trimmed)) {
+        return "Subject must contain meaningful text.";
+      }
+
+      if (trimmed.length > 150) {
+        return "Subject must be under 150 characters.";
+      }
+
+      return "";
+    }
+
+    case "message":
+      return "";
+
+    default:
+      return "";
+  }
+}
+
 export default function ContactPage() {
   const [formData, setFormData] =
-    useState<FormData>(initialForm);
+    useState<ContactFormData>(initialForm);
+
+  const [errors, setErrors] =
+    useState<FormErrors>({});
+
+  const [touched, setTouched] =
+    useState<Partial<Record<FieldName, boolean>>>(
+      {}
+    );
 
   const [status, setStatus] =
     useState<FormStatus>("idle");
@@ -40,24 +253,98 @@ export default function ContactPage() {
   const [errorMessage, setErrorMessage] =
     useState("");
 
+  const formRef = useRef<HTMLFormElement>(null);
+
   // Handle input changes
   const handleChange = (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement
     >
   ) => {
-    const { name, value } = event.target;
+    const field = event.target.name as FieldName;
+    let value = event.target.value;
+
+    if (field === "phone") {
+      value = value
+        .replace(/\D/g, "")
+        .slice(0, 10);
+    }
 
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [field]: value,
     }));
+
+    if (touched[field]) {
+      setErrors((prev) => ({
+        ...prev,
+        [field]: validateField(field, value),
+      }));
+    }
 
     setStatus("idle");
     setErrorMessage("");
   };
 
-  // Submit form to Web3Forms
+  // Validate on blur
+  const handleBlur = (
+    event: React.FocusEvent<
+      HTMLInputElement | HTMLTextAreaElement
+    >
+  ) => {
+    const field = event.target.name as FieldName;
+    const value = event.target.value;
+
+    setTouched((prev) => ({
+      ...prev,
+      [field]: true,
+    }));
+
+    setErrors((prev) => ({
+      ...prev,
+      [field]: validateField(field, value),
+    }));
+  };
+
+  // Validate all required fields
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+    const newTouched: Partial<
+      Record<FieldName, boolean>
+    > = {};
+
+    requiredFields.forEach((field) => {
+      newErrors[field] = validateField(
+        field,
+        formData[field]
+      );
+
+      newTouched[field] = true;
+    });
+
+    setErrors(newErrors);
+    setTouched(newTouched);
+
+    const firstInvalid = requiredFields.find(
+      (field) => !!newErrors[field]
+    );
+
+    if (firstInvalid) {
+      requestAnimationFrame(() => {
+        const element = formRef.current?.querySelector<
+          HTMLInputElement
+        >(`[name="${firstInvalid}"]`);
+
+        element?.focus();
+      });
+
+      return false;
+    }
+
+    return true;
+  };
+
+  // Submit to Web3Forms
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
@@ -65,9 +352,12 @@ export default function ContactPage() {
 
     if (isSubmitting) return;
 
-    setIsSubmitting(true);
     setStatus("idle");
     setErrorMessage("");
+
+    if (!validateForm()) {
+      return;
+    }
 
     const accessKey =
       process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
@@ -77,9 +367,10 @@ export default function ContactPage() {
       setErrorMessage(
         "Contact form is not configured yet. Please connect through LinkedIn."
       );
-      setIsSubmitting(false);
       return;
     }
+
+    setIsSubmitting(true);
 
     try {
       const response = await fetch(
@@ -94,6 +385,7 @@ export default function ContactPage() {
             access_key: accessKey,
             name: formData.name.trim(),
             email: formData.email.trim(),
+            phone: formData.phone.trim(),
             subject: formData.subject.trim(),
             message: formData.message.trim(),
             from_name: "Ashwani Portfolio",
@@ -107,6 +399,8 @@ export default function ContactPage() {
       if (response.ok && result.success) {
         setStatus("success");
         setFormData(initialForm);
+        setErrors({});
+        setTouched({});
       } else {
         setStatus("error");
         setErrorMessage(
@@ -126,20 +420,41 @@ export default function ContactPage() {
 
   const inputClass = `
     w-full rounded-xl
-    border border-gray-700
-    bg-[#101923]
+    border bg-[#101923]
     px-4 py-3.5
     text-sm text-white
     outline-none
     transition-colors duration-200
     placeholder:text-gray-400
-    focus:border-emerald-500
-    focus:ring-1 focus:ring-emerald-500/20
+    focus:ring-1
   `;
+
+  const getInputClass = (field: FieldName) => `
+    ${inputClass}
+    ${
+      errors[field]
+        ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
+        : "border-gray-700 focus:border-emerald-500 focus:ring-emerald-500/20"
+    }
+  `;
+
+  const fieldError = (field: FieldName) =>
+    errors[field] ? (
+      <p
+        id={`contact-${field}-error`}
+        role="alert"
+        className="mt-2 flex items-start gap-1.5 text-xs leading-5 text-red-400"
+      >
+        <FiAlertCircle
+          size={14}
+          className="mt-0.5 shrink-0"
+        />
+        <span>{errors[field]}</span>
+      </p>
+    ) : null;
 
   return (
     <section className="py-8 sm:py-12">
-
       {/* Page Header */}
       <div className="mb-10">
         <div className="mb-4 flex items-center gap-3">
@@ -167,13 +482,10 @@ export default function ContactPage() {
 
       {/* Contact Layout */}
       <div className="grid grid-cols-1 gap-7 xl:grid-cols-12">
-
         {/* Left Column */}
         <div className="space-y-6 xl:col-span-5">
-
           {/* Contact Information */}
           <div className="rounded-2xl border border-gray-800 bg-[#111c29] p-6 sm:p-7">
-
             <h2 className="mb-3 text-xl font-semibold text-white">
               Contact Information
             </h2>
@@ -227,7 +539,6 @@ export default function ContactPage() {
 
           {/* Availability Card */}
           <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-6 sm:p-7">
-
             <div className="mb-3 flex items-center gap-3">
               <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
 
@@ -257,7 +568,6 @@ export default function ContactPage() {
         {/* Right Column: Contact Form */}
         <div className="xl:col-span-7">
           <div className="h-full rounded-2xl border border-gray-800 bg-[#111c29] p-6 sm:p-8">
-
             <div className="mb-7">
               <h2 className="mb-2 text-xl font-semibold text-white">
                 Send a Message
@@ -270,13 +580,13 @@ export default function ContactPage() {
             </div>
 
             <form
+              ref={formRef}
               onSubmit={handleSubmit}
+              noValidate
               className="space-y-5"
             >
-
-              {/* Name and Email */}
+              {/* Row 1: Name and Email */}
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-
                 {/* Name */}
                 <div>
                   <label
@@ -292,12 +602,22 @@ export default function ContactPage() {
                     type="text"
                     autoComplete="name"
                     required
+                    minLength={2}
                     maxLength={100}
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Your name"
-                    className={inputClass}
+                    onBlur={handleBlur}
+                    aria-invalid={!!errors.name}
+                    aria-describedby={
+                      errors.name
+                        ? "contact-name-error"
+                        : undefined
+                    }
+                    placeholder="Enter your name"
+                    className={getInputClass("name")}
                   />
+
+                  {fieldError("name")}
                 </div>
 
                 {/* Email */}
@@ -318,54 +638,109 @@ export default function ContactPage() {
                     maxLength={254}
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="you@example.com"
-                    className={inputClass}
+                    onBlur={handleBlur}
+                    aria-invalid={!!errors.email}
+                    aria-describedby={
+                      errors.email
+                        ? "contact-email-error"
+                        : undefined
+                    }
+                    placeholder="Enter your email"
+                    className={getInputClass("email")}
                   />
+
+                  {fieldError("email")}
                 </div>
               </div>
 
-              {/* Subject */}
-              <div>
-                <label
-                  htmlFor="contact-subject"
-                  className="mb-2 block text-sm font-medium text-gray-200"
-                >
-                  Subject *
-                </label>
+              {/* Row 2: Phone and Subject */}
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                {/* Phone */}
+                <div>
+                  <label
+                    htmlFor="contact-phone"
+                    className="mb-2 block text-sm font-medium text-gray-200"
+                  >
+                    Phone Number *
+                  </label>
 
-                <input
-                  id="contact-subject"
-                  name="subject"
-                  type="text"
-                  required
-                  maxLength={150}
-                  value={formData.subject}
-                  onChange={handleChange}
-                  placeholder="Job opportunity / Project inquiry"
-                  className={inputClass}
-                />
+                  <input
+                    id="contact-phone"
+                    name="phone"
+                    type="tel"
+                    inputMode="numeric"
+                    autoComplete="tel-national"
+                    required
+                    minLength={10}
+                    maxLength={10}
+                    pattern="[6-9][0-9]{9}"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    aria-invalid={!!errors.phone}
+                    aria-describedby={
+                      errors.phone
+                        ? "contact-phone-error"
+                        : undefined
+                    }
+                    placeholder="Enter 10-digit mobile number"
+                    className={getInputClass("phone")}
+                  />
+
+                  {fieldError("phone")}
+                </div>
+
+                {/* Subject */}
+                <div>
+                  <label
+                    htmlFor="contact-subject"
+                    className="mb-2 block text-sm font-medium text-gray-200"
+                  >
+                    Subject *
+                  </label>
+
+                  <input
+                    id="contact-subject"
+                    name="subject"
+                    type="text"
+                    required
+                    minLength={3}
+                    maxLength={150}
+                    value={formData.subject}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    aria-invalid={!!errors.subject}
+                    aria-describedby={
+                      errors.subject
+                        ? "contact-subject-error"
+                        : undefined
+                    }
+                    placeholder="Job opportunity / Project inquiry"
+                    className={getInputClass("subject")}
+                  />
+
+                  {fieldError("subject")}
+                </div>
               </div>
 
-              {/* Message */}
+              {/* Message - Optional */}
               <div>
                 <label
                   htmlFor="contact-message"
                   className="mb-2 block text-sm font-medium text-gray-200"
                 >
-                  Your Message *
+                  Your Message (Optional)
                 </label>
 
                 <textarea
                   id="contact-message"
                   name="message"
                   rows={6}
-                  required
-                  minLength={10}
                   maxLength={3000}
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tell me about your opportunity or project..."
-                  className={`${inputClass} resize-y`}
+                  className={`${getInputClass("message")} resize-y`}
                 />
               </div>
 
@@ -387,7 +762,7 @@ export default function ContactPage() {
                 </div>
               )}
 
-              {/* Error Message */}
+              {/* API Error Message */}
               {status === "error" && (
                 <div
                   role="alert"
@@ -424,7 +799,6 @@ export default function ContactPage() {
 
                 <FiSend size={17} />
               </button>
-
             </form>
           </div>
         </div>
