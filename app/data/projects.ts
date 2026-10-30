@@ -96,25 +96,65 @@ export const projects = [
     technologies: ["Shopify"],
   },
   {
-    id: 9,
-    title: "Koala Kingdom",
-    description:
-      "Developed a responsive Shopify e-commerce website for an Australian souvenir and gifting brand, featuring custom product collections, engaging layouts, and a seamless shopping experience across all devices.",
-    image: "/portfolio/koalakingdom.jpg",
-    category: "shopify",
-    link: "https://www.koalakingdom.com.au/",
-    date: "2026-10-20",
-    technologies: ["Shopify", "Liquid", "HTML5", "CSS3", "JavaScript", "E-commerce"],
-  },
-    {
-    id: 10,
-    title: "Heal and Grow Wellness",
-    description:
-      "Developed a responsive WordPress website for a wellness and life coaching brand, featuring an elegant design, structured program pages, and clear calls to action for session bookings and client engagement.",
-    image: "/portfolio/healandgrowwellness.jpg",
-    category: "wordPress",
-    link: "https://healandgrowwellness.in/",
-    date: "2026-10-20",
-    technologies: ["WordPress", "Elementor", "HTML5", "CSS3", "Responsive", "Design"],
-  },
+  id: 9,
+  title: "Koala Kingdom",
+  description:
+    "Developed a responsive Shopify eCommerce website for an Australian souvenir and gifting brand using AI-assisted development, featuring custom Liquid sections, product collections, engaging layouts, and a seamless shopping experience.",
+  image: "/portfolio/koalakingdom.jpg",
+  category: "shopify",
+  link: "https://www.koalakingdom.com.au/",
+  date: "2026-10-20",
+  role: "Shopify & AI-Assisted Web Developer",
+  technologies: [
+    "Shopify",
+    "Liquid",
+    "AI-Assisted Development",
+    "HTML5",
+    "CSS3",
+    "JavaScript",
+    "E-commerce",
+  ],
+},
+
+{
+  id: 10,
+  title: "Heal and Grow Wellness",
+  description:
+    "Developed a responsive WordPress wellness and life coaching website using Elementor and AI-assisted development, featuring custom-designed sections, elegant layouts, structured program pages, and clear calls to action for client engagement.",
+  image: "/portfolio/healandgrowwellness.jpg",
+  category: "wordPress",
+  link: "https://healandgrowwellness.in/",
+  date: "2026-10-20",
+  role: "WordPress & AI-Assisted Web Developer",
+  technologies: [
+    "WordPress",
+    "Elementor",
+    "AI-Assisted Development",
+    "HTML5",
+    "CSS3",
+    "Responsive Design",
+  ],
+},
+
+{
+  id: 11,
+  title: "IRC Engineering Services",
+  description:
+    "Developed a responsive WordPress corporate website using Elementor and Claude AI-assisted development, featuring custom layouts, engineering service pages, and an optimized user experience across desktop and mobile devices.",
+  image: "/portfolio/irc-engineering.jpg",
+  category: "wordPress",
+  link: "https://ircengg.com/",
+  date: "2026-10-20",
+  role: "WordPress & AI-Assisted Web Developer",
+  technologies: [
+    "WordPress",
+    "Elementor",
+    "Claude AI",
+    "HTML5",
+    "CSS3",
+    "JavaScript",
+    "Responsive Design",
+  ],
+},
+
 ];

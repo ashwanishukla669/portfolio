@@ -30,11 +30,13 @@ export default function PortfolioCards() {
             (project) => project.category === activeTab
           );
 
-    return [...filtered].sort(
-      (a, b) =>
-        new Date(b.date).getTime() -
-        new Date(a.date).getTime()
-    );
+    return [...filtered].sort((a, b) => {
+      const dateDifference =
+        new Date(b.date).getTime() - new Date(a.date).getTime();
+
+      // Newest project first; for equal dates, higher ID first.
+      return dateDifference !== 0 ? dateDifference : b.id - a.id;
+    });
   }, [activeTab]);
 
   // Pagination calculations
