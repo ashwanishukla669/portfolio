@@ -133,8 +133,8 @@ export default function Hero() {
 
             <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gray-900 p-2 shadow-2xl">
               <div className="relative aspect-[4/5] overflow-hidden rounded-xl">
-                <Image
-                  src="/profile-pic.jpg"
+                <Image                  
+                  src="/profile-pic.webp"
                   alt="Ashwani Shukla - WordPress and Shopify Developer"
                   fill
                   priority

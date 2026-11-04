@@ -47,7 +47,7 @@ export const Sidebar: FC<Props> = ({ closeDrawer }) => {
           <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-emerald-400/50 to-cyan-500/20 opacity-60 blur-md transition-opacity duration-300 group-hover:opacity-100" />
 
           <Image
-            src="/profile-pic.jpg"
+            src="/profile-pic.webp"
             width={120}
             height={120}
             alt="Ashwani Shukla - WordPress and Shopify Developer"
