@@ -1,5 +1,4 @@
-import React from 'react'
-import Hero from './components/AboutMe/Hero'
+ import Hero from './components/AboutMe/Hero'
 import { WhatIDO } from './components/WhatIDo/WhatIDo'
  
 const Page = () => {
