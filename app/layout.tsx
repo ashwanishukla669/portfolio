@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "Ashwani Shukla is a WordPress and Shopify developer with 10+ years of experience in Elementor, WooCommerce, custom websites and responsive web development.",
 
   verification: {
-    google: "NK2CVvxxDCJMd8mxmjhrCxKOw9RK3RKvmaCiIxIIzCo",
+    google: "2pQR60GtHFhoVuyHtimQWkAU5ektx67N4br2xDPNK40",
   },
 
   applicationName: "Ashwani Shukla Portfolio",
