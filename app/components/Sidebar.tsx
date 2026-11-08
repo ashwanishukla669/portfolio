@@ -8,12 +8,15 @@ import {
   FaInstagram,
   FaLinkedinIn,
   FaLocationArrow,
+  FaYoutube,
 } from "react-icons/fa";
 import { usePathname, useRouter } from "next/navigation";
 import type { FC } from "react";
 import { NAV_ITEMS, NavItem } from "./ui/navigation";
 import Link from "next/link";
 import { Button } from "./ui/Button";
+import { BsYoutube } from "react-icons/bs";
+import { CgYoutube } from "react-icons/cg";
 
 type Props = {
   closeDrawer?: () => void;
@@ -80,11 +83,12 @@ export const Sidebar: FC<Props> = ({ closeDrawer }) => {
               href: "https://www.linkedin.com/in/shuklaashwani/",
               label: "LinkedIn",
             },
-            // {
-            //   icon: FaFacebookF,
-            //   href: "#",
-            //   label: "Facebook",
-            // },
+            {
+              icon: FaYoutube,
+              target: "_blank",
+              href: "https://www.youtube.com/@TechAshwaniShukla/",
+              label: "YouTube",
+            },
             // {
             //   icon: FaInstagram,
             //   href: "#",
