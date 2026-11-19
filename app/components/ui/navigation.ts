@@ -28,11 +28,11 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/portfolio",
     icon: FaBriefcase,
   },
-  {
-    label: "Services & Pricing",
-    href: "/services-pricing",
-    icon: FaLaptopCode,
-  },
+  // {
+  //   label: "Services & Pricing",
+  //   href: "/services-pricing",
+  //   icon: FaLaptopCode,
+  // },
   {
     label: "Contact",
     href: "/contact",
